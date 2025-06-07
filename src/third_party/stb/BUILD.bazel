@@ -1,0 +1,10 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//bazel:copts.bzl", "COPTS")
+
+cc_library(
+    name = "stb",
+    hdrs = glob(["*.h"]),
+    copts = COPTS,
+    strip_include_prefix = "/src",
+    visibility = ["//:__subpackages__"],
+)

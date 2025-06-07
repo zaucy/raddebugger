@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//bazel:copts.bzl", "COPTS")
+
+package(default_visibility = ["//:__subpackages__"])
+
+cc_library(
+    name = "text_cache",
+    hdrs = glob([
+        "*.h",
+        "*.c",
+    ]),
+    copts = COPTS,
+    strip_include_prefix = "/src",
+)

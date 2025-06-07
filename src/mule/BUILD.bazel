@@ -1,0 +1,38 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("//bazel:copts.bzl", "COPTS")
+
+package(default_visibility = ["//:__subpackages__"])
+
+cc_library(
+    name = "mule_c",
+    srcs = ["mule_c.c"],
+    hdrs = ["mule_c.h"],
+    copts = COPTS,
+    strip_include_prefix = "/src",
+)
+
+cc_library(
+    name = "mule_inline",
+    srcs = ["mule_inline.cpp"],
+    hdrs = ["inline_body.cpp"],
+    copts = COPTS,
+    strip_include_prefix = "/src",
+)
+
+cc_binary(
+    name = "mule_main",
+    srcs = [
+        "mule_main.cpp",
+        "mule_o2.cpp",
+    ],
+    copts = COPTS,
+    linkopts = select({
+        "@rules_cc//cc/compiler:msvc-cl": ["/SUBSYSTEM:WINDOWS"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        ":mule_c",
+        ":mule_inline",
+        "//src/lib_raddbg_markup",
+    ],
+)

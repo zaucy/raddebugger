@@ -1,0 +1,11 @@
+root = true
+
+[*]
+indent_style = space
+
+[*.{c,h}]
+indent_size = 2
+
+[*.{bzl,bazel}]
+# matches output of buildifier
+indent_size = 4

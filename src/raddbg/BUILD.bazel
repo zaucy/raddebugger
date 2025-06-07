@@ -1,0 +1,58 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("//bazel:copts.bzl", "COPTS")
+
+package(default_visibility = ["//:__subpackages__"])
+
+cc_library(
+    name = "lib",
+    hdrs = glob([
+        "*.h",
+        "*.c",
+        "generated/*.h",
+        "generated/*.c",
+    ]),
+    copts = COPTS,
+    strip_include_prefix = "/src",
+)
+
+cc_binary(
+    name = "raddbg",
+    srcs = ["raddbg_main.c"],
+    copts = COPTS,
+    deps = [
+        ":lib",
+        "//src/async",
+        "//src/base",
+        "//src/codeview",
+        "//src/coff",
+        "//src/ctrl",
+        "//src/dasm_cache",
+        "//src/dbg_engine",
+        "//src/dbgi",
+        "//src/demon",
+        "//src/draw",
+        "//src/eval",
+        "//src/eval_visualization",
+        "//src/file_stream",
+        "//src/font_cache",
+        "//src/font_provider",
+        "//src/geo_cache",
+        "//src/hash_store",
+        "//src/mdesk",
+        "//src/msf",
+        "//src/mutable_text",
+        "//src/os",
+        "//src/path",
+        "//src/pdb",
+        "//src/pe",
+        "//src/ptr_graph_cache",
+        "//src/rdi_format",
+        "//src/rdi_from_pdb:lib",
+        "//src/rdi_make",
+        "//src/regs",
+        "//src/render",
+        "//src/text_cache",
+        "//src/texture_cache",
+        "//src/ui",
+    ],
+)

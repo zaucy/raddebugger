@@ -1,0 +1,36 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("//bazel:copts.bzl", "COPTS")
+
+package(default_visibility = ["//:__subpackages__"])
+
+cc_library(
+    name = "lib",
+    hdrs = glob([
+        "*.h",
+        "*.c",
+    ]),
+    copts = COPTS,
+    strip_include_prefix = "/src",
+)
+
+cc_binary(
+    name = "rdi_from_dwarf",
+    srcs = ["rdi_from_dwarf_main.c"],
+    copts = COPTS,
+    deps = [
+        ":lib",
+        "//src/async",
+        "//src/base",
+        "//src/coff",
+        "//src/dwarf",
+        "//src/lib_rdi_format",
+        "//src/linker",
+        "//src/os",
+        "//src/pe",
+        "//src/rdi_make",
+        "//src/third_party/rad_lzb_simple",
+        "//src/third_party/radsort",
+        "//src/third_party/stb",
+        "//src/third_party/xxHash",
+    ],
+)

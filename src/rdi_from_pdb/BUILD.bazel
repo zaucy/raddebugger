@@ -1,0 +1,37 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("//bazel:copts.bzl", "COPTS")
+
+package(default_visibility = ["//:__subpackages__"])
+
+cc_library(
+    name = "lib",
+    hdrs = glob([
+        "*.h",
+        "*.c",
+    ]),
+    copts = COPTS,
+    strip_include_prefix = "/src",
+    deps = [
+        "//src/third_party/rad_lzb_simple",
+        "//src/third_party/stb",
+    ],
+)
+
+cc_binary(
+    name = "rdi_from_pdb",
+    srcs = ["rdi_from_pdb_main.c"],
+    copts = COPTS,
+    deps = [
+        ":lib",
+        "//src/async",
+        "//src/base",
+        "//src/codeview",
+        "//src/coff",
+        "//src/lib_rdi_format",
+        "//src/msf",
+        "//src/os",
+        "//src/path",
+        "//src/pdb",
+        "//src/rdi_make",
+    ],
+)

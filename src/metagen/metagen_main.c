@@ -39,46 +39,62 @@ entry_point(CmdLine *cmdline)
   //////////////////////////////
   //- rjf: extract paths
   //
-  String8 build_dir_path   = os_get_process_info()->binary_path;
-  String8 project_dir_path = str8_chop_last_slash(build_dir_path);
+  String8 project_dir_path = str8_cstring(getenv("BUILD_WORKING_DIRECTORY"));
+  String8 build_dir_path   = push_str8f(mg_arena, "%S/build", project_dir_path);
   String8 code_dir_path    = push_str8f(mg_arena, "%S/src", project_dir_path);
-  
-  //////////////////////////////
-  //- rjf: search code directories for all files to consider
-  //
-  String8List file_paths = {0};
-  DeferLoop(printf("searching %.*s...", str8_varg(code_dir_path)), printf(" %i files found\n", (int)file_paths.node_count))
-  {
-    typedef struct Task Task;
-    struct Task
+
+  String8List file_paths = str8_list_copy(mg_arena, &cmdline->inputs);
+
+  if(file_paths.node_count == 0) {
+    //////////////////////////////
+    //- rjf: search code directories for all files to consider
+    //
+    DeferLoop(printf("searching %.*s...", str8_varg(code_dir_path)), printf(" %i files found\n", (int)file_paths.node_count))
     {
-      Task *next;
-      String8 path;
-    };
-    Task start_task = {0, code_dir_path};
-    Task *first_task = &start_task;
-    Task *last_task = &start_task;
-    for(Task *task = first_task; task != 0; task = task->next)
-    {
-      OS_FileIter *it = os_file_iter_begin(mg_arena, task->path, 0);
-      for(OS_FileInfo info = {0}; os_file_iter_next(mg_arena, it, &info);)
+      typedef struct Task Task;
+      struct Task
       {
-        String8 file_path = push_str8f(mg_arena, "%S/%S", task->path, info.name);
-        if(info.props.flags & FilePropertyFlag_IsFolder)
+        Task *next;
+        String8 path;
+      };
+      Task start_task = {0, code_dir_path};
+      Task *first_task = &start_task;
+      Task *last_task = &start_task;
+      for(Task *task = first_task; task != 0; task = task->next)
+      {
+        OS_FileIter *it = os_file_iter_begin(mg_arena, task->path, 0);
+        for(OS_FileInfo info = {0}; os_file_iter_next(mg_arena, it, &info);)
         {
-          Task *next_task = push_array(mg_arena, Task, 1);
-          SLLQueuePush(first_task, last_task, next_task);
-          next_task->path = file_path;
+          String8 file_path = push_str8f(mg_arena, "%S/%S", task->path, info.name);
+          if(info.props.flags & FilePropertyFlag_IsFolder)
+          {
+            Task *next_task = push_array(mg_arena, Task, 1);
+            SLLQueuePush(first_task, last_task, next_task);
+            next_task->path = file_path;
+          }
+          else
+          {
+            str8_list_push(mg_arena, &file_paths, file_path);
+          }
         }
-        else
-        {
-          str8_list_push(mg_arena, &file_paths, file_path);
-        }
+        os_file_iter_end(it);
       }
-      os_file_iter_end(it);
+    }
+  } else {
+    //////////////////////////////
+    //- zaucy: make sure explicitly passed in .mdesk files actually exist
+    //
+    for(String8Node *n = file_paths.first; n != 0; n = n->next)
+    {
+      String8 file_path = n->string;
+      if(!os_file_path_exists(file_path))
+      {
+        fprintf(stderr, "ERROR: %.*s does not exist\n", str8_varg(file_path));
+        os_abort(1);
+      }
     }
   }
-  
+
   //////////////////////////////
   //- rjf: parse all metadesk files
   //

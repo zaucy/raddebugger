@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//bazel:copts.bzl", "COPTS")
+
+cc_library(
+    name = "mdesk",
+    hdrs = glob([
+        "*.h",
+        "*.c",
+    ]),
+    strip_include_prefix = "/src",
+    visibility = ["//:__subpackages__"],
+)
