@@ -19,6 +19,12 @@ cc_binary(
     name = "raddbg",
     srcs = ["raddbg_main.c"],
     copts = COPTS,
+    linkopts = select({
+        "@rules_cc//cc/compiler:msvc-cl": [
+            "/SUBSYSTEM:WINDOWS",
+        ],
+        "//conditions:default": [],
+    }),
     deps = [
         ":lib",
         "//src/async",
