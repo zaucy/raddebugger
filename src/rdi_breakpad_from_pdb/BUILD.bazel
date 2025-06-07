@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary")
 load("//bazel:copts.bzl", "COPTS")
 
-package(default_visibility = ["//:__subpackages__"])
+package(default_visibility = ["//visibility:public"])
 
 cc_binary(
     name = "rdi_breakpad_from_pdb",

@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
 load("//bazel:copts.bzl", "COPTS")
 
-package(default_visibility = ["//:__subpackages__"])
+package(default_visibility = ["//visibility:public"])
 
 cc_library(
     name = "lib",
@@ -17,7 +17,7 @@ cc_binary(
     name = "metagen",
     srcs = ["metagen_main.c"],
     copts = COPTS,
-    visibility = ["//:__subpackages__"],
+    visibility = ["//visibility:public"],
     deps = [
         ":lib",
         "//src/mdesk",

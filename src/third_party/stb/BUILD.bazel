@@ -6,5 +6,5 @@ cc_library(
     hdrs = glob(["*.h"]),
     copts = COPTS,
     strip_include_prefix = "/src",
-    visibility = ["//:__subpackages__"],
+    visibility = ["//visibility:public"],
 )

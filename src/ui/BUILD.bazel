@@ -11,5 +11,5 @@ cc_library(
     ]),
     copts = COPTS,
     strip_include_prefix = "/src",
-    visibility = ["//:__subpackages__"],
+    visibility = ["//visibility:public"],
 )
