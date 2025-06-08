@@ -227,7 +227,7 @@ dmn_w32_full_path_from_module(Arena *arena, DMN_W32_Entity *module)
     }
     
     // rjf: fallback (main module only): process -> full path
-    if(path16.size == 0 && module->module.is_main)
+    if(path16.size == 0 && module->mod.is_main)
     {
       DMN_W32_Entity *process = module->parent;
       DWORD size = KB(4);
@@ -239,16 +239,16 @@ dmn_w32_full_path_from_module(Arena *arena, DMN_W32_Entity *module)
     }
     
     // rjf: fallback (any module - no guarantee): address_of_name -> full path
-    if(path16.size == 0 && module->module.address_of_name_pointer != 0)
+    if(path16.size == 0 && module->mod.address_of_name_pointer != 0)
     {
       DMN_W32_Entity *process = module->parent;
       U64 ptr_size = bit_size_from_arch(process->arch)/8;
       U64 name_pointer = 0;
-      if(dmn_w32_process_read(process->handle, r1u64(module->module.address_of_name_pointer, module->module.address_of_name_pointer+ptr_size), &name_pointer))
+      if(dmn_w32_process_read(process->handle, r1u64(module->mod.address_of_name_pointer, module->mod.address_of_name_pointer+ptr_size), &name_pointer))
       {
         if(name_pointer != 0)
         {
-          if(module->module.name_is_unicode)
+          if(module->mod.name_is_unicode)
           {
             path16 = dmn_w32_read_memory_str16(scratch.arena, process->handle, name_pointer);
           }
@@ -1933,10 +1933,10 @@ dmn_ctrl_run(Arena *arena, DMN_CtrlCtx *ctx, DMN_RunCtrls *ctrls)
                 thread->arch                     = image_info.arch;
                 thread->thread.thread_local_base = tls_base;
                 module->handle                         = module_handle;
-                module->module.vaddr_range             = r1u64(module_base, image_info.size);
-                module->module.is_main                 = 1;
-                module->module.address_of_name_pointer = module_name_vaddr;
-                module->module.name_is_unicode         = module_name_is_unicode;
+                module->mod.vaddr_range             = r1u64(module_base, image_info.size);
+                module->mod.is_main                 = 1;
+                module->mod.address_of_name_pointer = module_name_vaddr;
+                module->mod.name_is_unicode         = module_name_is_unicode;
               }
               
               // rjf: put thread into suspended state, so it matches expected initial state
@@ -2143,9 +2143,9 @@ dmn_ctrl_run(Arena *arena, DMN_CtrlCtx *ctx, DMN_RunCtrls *ctrls)
               {
                 module->handle                         = evt.u.LoadDll.hFile;
                 module->arch                           = image_info.arch;
-                module->module.vaddr_range             = r1u64(module_base, module_base+image_info.size);
-                module->module.address_of_name_pointer = (U64)evt.u.LoadDll.lpImageName;
-                module->module.name_is_unicode         = (evt.u.LoadDll.fUnicode != 0);
+                module->mod.vaddr_range             = r1u64(module_base, module_base+image_info.size);
+                module->mod.address_of_name_pointer = (U64)evt.u.LoadDll.lpImageName;
+                module->mod.name_is_unicode         = (evt.u.LoadDll.fUnicode != 0);
               }
               
               // rjf: generate event

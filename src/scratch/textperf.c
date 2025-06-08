@@ -57,7 +57,7 @@ frame(void)
   DR_BucketScope(bucket) ProfScope("draw")
   {
     Vec2F32 mouse = os_mouse_from_window(os_window);
-    FNT_Tag font = fnt_tag_from_path(str8_lit("C:/devel/raddebugger/data/Inconsolata-Regular.ttf"));
+    FNT_Tag font = fnt_tag_from_path(str8_lit("data/Inconsolata-Regular.ttf"));
     for(F32 x = 0; x < 500; x += 5.f)
     {
       for(F32 y = 0; y < 500; y += 5.f)

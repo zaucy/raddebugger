@@ -720,13 +720,13 @@ read_only global RD_Cfg rd_nil_cfg =
 
 read_only global RD_PanelNode rd_nil_panel_node =
 {
-  &rd_nil_panel_node,
-  &rd_nil_panel_node,
-  &rd_nil_panel_node,
-  &rd_nil_panel_node,
-  &rd_nil_panel_node,
-  0,
-  &rd_nil_cfg,
+  .first = &rd_nil_panel_node,
+  .last = &rd_nil_panel_node,
+  .next = &rd_nil_panel_node,
+  .prev = &rd_nil_panel_node,
+  .parent = &rd_nil_panel_node,
+  .child_count = 0,
+  .cfg = &rd_nil_cfg,
   .selected_tab = &rd_nil_cfg,
 };
 

@@ -16,8 +16,12 @@
 ////////////////////////////////
 //~ rjf: Codebase Keywords
 
+#ifndef internal
 #define internal      static
+#endif
+#ifndef global
 #define global        static
+#endif
 #define local_persist static
 
 #if COMPILER_MSVC || (COMPILER_CLANG && OS_WINDOWS)

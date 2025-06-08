@@ -131,7 +131,7 @@ struct DMN_W32_Entity
       B32 is_main;
       B32 name_is_unicode;
     }
-    module;
+    mod;
   };
 };
 
