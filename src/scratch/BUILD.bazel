@@ -1,13 +1,79 @@
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
 load("//bazel:copts.bzl", "COPTS")
 
 package(default_visibility = ["//visibility:public"])
 
-cc_library(
-    name = "scratch",
-    hdrs = glob([
-        "*.c",
-    ]),
+cc_binary(
+    name = "convertperf",
+    srcs = ["convertperf.c"],
     copts = COPTS,
-    strip_include_prefix = "/src",
+    deps = [
+    ],
+)
+
+cc_binary(
+    name = "debugstringperf",
+    srcs = ["debugstringperf.c"],
+    copts = COPTS,
+    deps = [
+    ],
+)
+
+cc_binary(
+    name = "eval_scratch",
+    srcs = ["eval_scratch.c"],
+    copts = COPTS,
+    deps = [
+    ],
+)
+
+cc_binary(
+    name = "parse_inline_sites",
+    srcs = ["parse_inline_sites.c"],
+    copts = COPTS,
+    deps = [
+    ],
+)
+
+cc_binary(
+    name = "ryan_scratch",
+    srcs = ["ryan_scratch.c"],
+    copts = COPTS,
+    linkopts = select({
+        "@rules_cc//cc/compiler:msvc-cl": [
+            "/SUBSYSTEM:WINDOWS",
+        ],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "//src/base",
+        "//src/draw",
+        "//src/font_cache",
+        "//src/font_provider",
+        "//src/os",
+        "//src/render",
+    ],
+)
+
+cc_binary(
+    name = "textperf",
+    srcs = ["textperf.c"],
+    copts = COPTS,
+    data = [
+        "//data:Inconsolata-Regular.ttf",
+    ],
+    linkopts = select({
+        "@rules_cc//cc/compiler:msvc-cl": [
+            "/SUBSYSTEM:WINDOWS",
+        ],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "//src/base",
+        "//src/draw",
+        "//src/font_cache",
+        "//src/font_provider",
+        "//src/os",
+        "//src/render",
+    ],
 )

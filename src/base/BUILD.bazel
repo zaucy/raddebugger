@@ -13,5 +13,6 @@ cc_library(
     strip_include_prefix = "/src",
     deps = [
         "//src/lib_raddbg_markup",
+        "//src/third_party/stb",
     ],
 )
