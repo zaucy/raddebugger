@@ -13,5 +13,6 @@ cc_library(
     strip_include_prefix = "/src",
     deps = [
         "//src/third_party/blake3",
+        "//src/third_party/radsort",
     ],
 )

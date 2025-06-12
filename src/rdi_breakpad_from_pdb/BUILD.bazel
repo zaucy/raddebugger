@@ -1,12 +1,16 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@rules_cc//cc:defs.bzl", "cc_library")
 load("//bazel:copts.bzl", "COPTS")
 
 package(default_visibility = ["//visibility:public"])
 
-cc_binary(
+cc_library(
     name = "rdi_breakpad_from_pdb",
-    srcs = ["rdi_breakpad_from_pdb_main.c"],
+    hdrs = glob([
+        "*.c",
+        "*.h",
+    ]),
     copts = COPTS,
+    strip_include_prefix = "/src",
     deps = [
         "//src/async",
         "//src/base",
@@ -16,7 +20,7 @@ cc_binary(
         "//src/os",
         "//src/path",
         "//src/pdb",
-        "//src/rdi_from_pdb",
+        "//src/rdi_from_pdb:lib",
         "//src/rdi_make",
     ],
 )
