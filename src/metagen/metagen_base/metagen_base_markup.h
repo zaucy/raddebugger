@@ -5,7 +5,7 @@
 #define BASE_MARKUP_H
 
 internal void set_thread_name(String8 string);
-internal void set_thread_namef(char *fmt, ...);
+internal void set_thread_namef(const char *fmt, ...);
 #define ThreadNameF(...) (set_thread_namef(__VA_ARGS__))
 #define ThreadName(str) (set_thread_name(str))
 

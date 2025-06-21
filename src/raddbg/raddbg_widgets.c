@@ -1020,7 +1020,7 @@ rd_icon_button(RD_IconKind kind, FuzzyMatchRangeList *matches, String8 string)
 }
 
 internal UI_Signal
-rd_icon_buttonf(RD_IconKind kind, FuzzyMatchRangeList *matches, char *fmt, ...)
+rd_icon_buttonf(RD_IconKind kind, FuzzyMatchRangeList *matches, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -2700,7 +2700,7 @@ rd_code_slice(RD_CodeSliceParams *params, TxtPt *cursor, TxtPt *mark, S64 *prefe
 }
 
 internal RD_CodeSliceSignal
-rd_code_slicef(RD_CodeSliceParams *params, TxtPt *cursor, TxtPt *mark, S64 *preferred_column, char *fmt, ...)
+rd_code_slicef(RD_CodeSliceParams *params, TxtPt *cursor, TxtPt *mark, S64 *preferred_column, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -4039,7 +4039,7 @@ rd_cell(RD_CellParams *params, String8 string)
 }
 
 internal UI_Signal
-rd_cellf(RD_CellParams *params, char *fmt, ...)
+rd_cellf(RD_CellParams *params, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;

@@ -1143,7 +1143,7 @@ internal E_TypeKeyList e_type_key_list_copy(Arena *arena, E_TypeKeyList *src);
 //~ rjf: Message Functions
 
 internal void e_msg(Arena *arena, E_MsgList *msgs, E_MsgKind kind, Rng1U64 range, String8 text);
-internal void e_msgf(Arena *arena, E_MsgList *msgs, E_MsgKind kind, Rng1U64 range, char *fmt, ...);
+internal void e_msgf(Arena *arena, E_MsgList *msgs, E_MsgKind kind, Rng1U64 range, const char *fmt, ...);
 internal void e_msg_list_concat_in_place(E_MsgList *dst, E_MsgList *to_push);
 internal E_MsgList e_msg_list_copy(Arena *arena, E_MsgList *src);
 
@@ -1231,7 +1231,7 @@ internal E_Key e_parent_key_pop(void);
 
 //- rjf: key construction
 internal E_Key e_key_from_string(String8 string);
-internal E_Key e_key_from_stringf(char *fmt, ...);
+internal E_Key e_key_from_stringf(const char *fmt, ...);
 internal E_Key e_key_from_expr(E_Expr *expr);
 
 //- rjf: base key -> bundle helper
@@ -1282,7 +1282,7 @@ internal String8 e_string_from_id(U64 id);
 //~ rjf: Key Extension Functions
 
 internal E_Key e_key_wrap(E_Key key, String8 string);
-internal E_Key e_key_wrapf(E_Key key, char *fmt, ...);
+internal E_Key e_key_wrapf(E_Key key, const char *fmt, ...);
 
 //- rjf: eval-based helpers
 #define e_eval_wrap(eval, string) e_eval_from_key(e_key_wrap((eval).key, (string)))

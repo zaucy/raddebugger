@@ -226,8 +226,8 @@ internal String8 str8_skip_chop_whitespace(String8 string);
 
 internal String8 push_str8_cat(Arena *arena, String8 s1, String8 s2);
 internal String8 push_str8_copy(Arena *arena, String8 s);
-internal String8 push_str8fv(Arena *arena, char *fmt, va_list args);
-internal String8 push_str8f(Arena *arena, char *fmt, ...);
+internal String8 push_str8fv(Arena *arena, const char *fmt, va_list args);
+internal String8 push_str8f(Arena *arena, const char *fmt, ...);
 
 ////////////////////////////////
 //~ rjf: String <=> Integer Conversions
@@ -267,8 +267,8 @@ internal String8Node* str8_list_push(Arena *arena, String8List *list, String8 st
 internal String8Node* str8_list_push_front(Arena *arena, String8List *list, String8 string);
 internal void         str8_list_concat_in_place(String8List *list, String8List *to_push);
 internal String8Node* str8_list_push_aligner(Arena *arena, String8List *list, U64 min, U64 align);
-internal String8Node* str8_list_pushf(Arena *arena, String8List *list, char *fmt, ...);
-internal String8Node* str8_list_push_frontf(Arena *arena, String8List *list, char *fmt, ...);
+internal String8Node* str8_list_pushf(Arena *arena, String8List *list, const char *fmt, ...);
+internal String8Node* str8_list_push_frontf(Arena *arena, String8List *list, const char *fmt, ...);
 internal String8List  str8_list_copy(Arena *arena, String8List *list);
 #define str8_list_first(list) ((list)->first ? (list)->first->string : str8_zero())
 

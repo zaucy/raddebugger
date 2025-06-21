@@ -162,7 +162,7 @@ internal String8        os_file_read_cstring(Arena *arena, OS_Handle file, U64 o
 //~ rjf: Process Launcher Helpers
 
 internal OS_Handle os_cmd_line_launch(String8 string);
-internal OS_Handle os_cmd_line_launchf(char *fmt, ...);
+internal OS_Handle os_cmd_line_launchf(const char *fmt, ...);
 
 ////////////////////////////////
 //~ rjf: @os_hooks System/Process Info (Implemented Per-OS)

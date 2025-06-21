@@ -757,7 +757,7 @@ internal String8 ui_display_part_from_key_string(String8 string);
 internal UI_Key  ui_key_zero(void);
 internal UI_Key  ui_key_make(U64 v);
 internal UI_Key  ui_key_from_string(UI_Key seed_key, String8 string);
-internal UI_Key  ui_key_from_stringf(UI_Key seed_key, char *fmt, ...);
+internal UI_Key  ui_key_from_stringf(UI_Key seed_key, const char *fmt, ...);
 internal B32     ui_key_match(UI_Key a, UI_Key b);
 
 ////////////////////////////////
@@ -923,7 +923,7 @@ internal Vec4F32           ui_color_from_tags_key_name(UI_Key key, String8 name)
 internal UI_Box *          ui_build_box_from_key(UI_BoxFlags flags, UI_Key key);
 internal UI_Key            ui_active_seed_key(void);
 internal UI_Box *          ui_build_box_from_string(UI_BoxFlags flags, String8 string);
-internal UI_Box *          ui_build_box_from_stringf(UI_BoxFlags flags, char *fmt, ...);
+internal UI_Box *          ui_build_box_from_stringf(UI_BoxFlags flags, const char *fmt, ...);
 
 //- rjf: box node equipment
 internal inline void       ui_box_equip_display_string(UI_Box *box, String8 string);
@@ -1146,7 +1146,7 @@ internal UI_Size  ui_pop_pref_size(Axis2 axis);
 internal UI_Size  ui_set_next_pref_size(Axis2 axis, UI_Size v);
 internal void     ui_push_corner_radius(F32 v);
 internal void     ui_pop_corner_radius(void);
-internal void     ui_push_tagf(char *fmt, ...);
+internal void     ui_push_tagf(const char *fmt, ...);
 internal F32      ui_top_px_height(void);
 
 ////////////////////////////////

@@ -153,7 +153,7 @@ internal UI_Signal rd_menu_bar_button(String8 string);
 internal UI_Signal rd_cmd_spec_button(String8 name);
 internal void rd_cmd_list_menu_buttons(U64 count, String8 *cmd_names, U32 *fastpath_codepoints);
 internal UI_Signal rd_icon_button(RD_IconKind kind, FuzzyMatchRangeList *matches, String8 string);
-internal UI_Signal rd_icon_buttonf(RD_IconKind kind, FuzzyMatchRangeList *matches, char *fmt, ...);
+internal UI_Signal rd_icon_buttonf(RD_IconKind kind, FuzzyMatchRangeList *matches, const char *fmt, ...);
 
 ////////////////////////////////
 //~ rjf: UI Widgets: Text View
@@ -161,7 +161,7 @@ internal UI_Signal rd_icon_buttonf(RD_IconKind kind, FuzzyMatchRangeList *matche
 internal UI_BOX_CUSTOM_DRAW(rd_thread_box_draw_extensions);
 internal UI_BOX_CUSTOM_DRAW(rd_bp_box_draw_extensions);
 internal RD_CodeSliceSignal rd_code_slice(RD_CodeSliceParams *params, TxtPt *cursor, TxtPt *mark, S64 *preferred_column, String8 string);
-internal RD_CodeSliceSignal rd_code_slicef(RD_CodeSliceParams *params, TxtPt *cursor, TxtPt *mark, S64 *preferred_column, char *fmt, ...);
+internal RD_CodeSliceSignal rd_code_slicef(RD_CodeSliceParams *params, TxtPt *cursor, TxtPt *mark, S64 *preferred_column, const char *fmt, ...);
 
 internal B32 rd_do_txt_controls(TXT_TextInfo *info, String8 data, U64 line_count_per_page, TxtPt *cursor, TxtPt *mark, S64 *preferred_column);
 
@@ -179,6 +179,6 @@ internal UI_Box *rd_code_label(F32 alpha, B32 indirection_size_change, Vec4F32 b
 //~ rjf: UI Widgets: Line Edit
 
 internal UI_Signal rd_cell(RD_CellParams *params, String8 string);
-internal UI_Signal rd_cellf(RD_CellParams *params, char *fmt, ...);
+internal UI_Signal rd_cellf(RD_CellParams *params, const char *fmt, ...);
 
 #endif // RADDBG_WIDGETS_H

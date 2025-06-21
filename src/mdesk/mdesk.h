@@ -255,7 +255,7 @@ global read_only MD_Node md_nil_node =
 //~ rjf: Message Type Functions
 
 internal void md_msg_list_push(Arena *arena, MD_MsgList *msgs, MD_Node *node, MD_MsgKind kind, String8 string);
-internal void md_msg_list_pushf(Arena *arena, MD_MsgList *msgs, MD_Node *node, MD_MsgKind kind, char *fmt, ...);
+internal void md_msg_list_pushf(Arena *arena, MD_MsgList *msgs, MD_Node *node, MD_MsgKind kind, const char *fmt, ...);
 internal void md_msg_list_concat_in_place(MD_MsgList *dst, MD_MsgList *to_push);
 
 ////////////////////////////////

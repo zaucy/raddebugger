@@ -407,7 +407,7 @@ rd_cfg_new(RD_Cfg *parent, String8 string)
 }
 
 internal RD_Cfg *
-rd_cfg_newf(RD_Cfg *parent, char *fmt, ...)
+rd_cfg_newf(RD_Cfg *parent, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -440,7 +440,7 @@ rd_cfg_new_replace(RD_Cfg *parent, String8 string)
 }
 
 internal RD_Cfg *
-rd_cfg_new_replacef(RD_Cfg *parent, char *fmt, ...)
+rd_cfg_new_replacef(RD_Cfg *parent, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -487,7 +487,7 @@ rd_cfg_equip_string(RD_Cfg *cfg, String8 string)
 }
 
 internal void
-rd_cfg_equip_stringf(RD_Cfg *cfg, char *fmt, ...)
+rd_cfg_equip_stringf(RD_Cfg *cfg, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -1471,7 +1471,7 @@ rd_immediate_cfg_from_key(String8 string)
 }
 
 internal RD_Cfg *
-rd_immediate_cfg_from_keyf(char *fmt, ...)
+rd_immediate_cfg_from_keyf(const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -5745,7 +5745,7 @@ rd_store_view_param(String8 key, String8 value)
 }
 
 internal void
-rd_store_view_paramf(String8 key, char *fmt, ...)
+rd_store_view_paramf(String8 key, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;

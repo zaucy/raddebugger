@@ -529,7 +529,7 @@ lnk_symbol_table_search(LNK_SymbolTable *symtab, LNK_SymbolScopeFlags scope, Str
 }
 
 internal LNK_Symbol *
-lnk_symbol_table_searchf(LNK_SymbolTable *symtab, LNK_SymbolScopeFlags scope_flags, char *fmt, ...)
+lnk_symbol_table_searchf(LNK_SymbolTable *symtab, LNK_SymbolScopeFlags scope_flags, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   

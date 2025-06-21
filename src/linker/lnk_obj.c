@@ -4,7 +4,7 @@
 ////////////////////////////////
 
 internal void
-lnk_error_obj(LNK_ErrorCode code, LNK_Obj *obj, char *fmt, ...)
+lnk_error_obj(LNK_ErrorCode code, LNK_Obj *obj, const char *fmt, ...)
 {
   va_list args; va_start(args, fmt);
   lnk_error_with_loc_fv(code, obj->path, obj->lib_path, fmt, args);

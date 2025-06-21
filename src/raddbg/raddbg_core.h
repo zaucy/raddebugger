@@ -808,12 +808,12 @@ internal void rd_cfg_release(RD_Cfg *cfg);
 internal void rd_cfg_release_all_children(RD_Cfg *cfg);
 internal RD_Cfg *rd_cfg_from_id(RD_CfgID id);
 internal RD_Cfg *rd_cfg_new(RD_Cfg *parent, String8 string);
-internal RD_Cfg *rd_cfg_newf(RD_Cfg *parent, char *fmt, ...);
+internal RD_Cfg *rd_cfg_newf(RD_Cfg *parent, const char *fmt, ...);
 internal RD_Cfg *rd_cfg_new_replace(RD_Cfg *parent, String8 string);
-internal RD_Cfg *rd_cfg_new_replacef(RD_Cfg *parent, char *fmt, ...);
+internal RD_Cfg *rd_cfg_new_replacef(RD_Cfg *parent, const char *fmt, ...);
 internal RD_Cfg *rd_cfg_deep_copy(RD_Cfg *src_root);
 internal void rd_cfg_equip_string(RD_Cfg *cfg, String8 string);
-internal void rd_cfg_equip_stringf(RD_Cfg *cfg, char *fmt, ...);
+internal void rd_cfg_equip_stringf(RD_Cfg *cfg, const char *fmt, ...);
 internal void rd_cfg_insert_child(RD_Cfg *parent, RD_Cfg *prev_child, RD_Cfg *new_child);
 internal void rd_cfg_unhook(RD_Cfg *parent, RD_Cfg *child);
 internal RD_Cfg *rd_cfg_child_from_string(RD_Cfg *parent, String8 string);
@@ -861,7 +861,7 @@ internal U64 rd_setting_u64_from_name(String8 name);
 internal F32 rd_setting_f32_from_name(String8 name);
 
 internal RD_Cfg *rd_immediate_cfg_from_key(String8 string);
-internal RD_Cfg *rd_immediate_cfg_from_keyf(char *fmt, ...);
+internal RD_Cfg *rd_immediate_cfg_from_keyf(const char *fmt, ...);
 
 internal String8 rd_mapped_from_file_path(Arena *arena, String8 file_path);
 internal String8List rd_possible_overrides_from_file_path(Arena *arena, String8 file_path);
@@ -947,7 +947,7 @@ internal void rd_store_view_expr_string(String8 string);
 internal void rd_store_view_loading_info(B32 is_loading, U64 progress_u64, U64 progress_u64_target);
 internal void rd_store_view_scroll_pos(UI_ScrollPt2 pos);
 internal void rd_store_view_param(String8 key, String8 value);
-internal void rd_store_view_paramf(String8 key, char *fmt, ...);
+internal void rd_store_view_paramf(String8 key, const char *fmt, ...);
 #define rd_store_view_param_f32(key, f32) rd_store_view_paramf((key), "%ff", (f32))
 #define rd_store_view_param_s64(key, s64) rd_store_view_paramf((key), "%I64d", (s64))
 #define rd_store_view_param_u64(key, u64) rd_store_view_paramf((key), "0x%I64x", (u64))

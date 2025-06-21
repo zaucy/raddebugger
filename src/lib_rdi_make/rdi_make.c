@@ -145,7 +145,7 @@ rdim_str8_copy(RDIM_Arena *arena, RDIM_String8 src)
 }
 
 RDI_PROC RDIM_String8
-rdim_str8f(RDIM_Arena *arena, char *fmt, ...)
+rdim_str8f(RDIM_Arena *arena, const char *fmt, ...)
 {
   va_list args;
   va_start(args, fmt);
@@ -155,7 +155,7 @@ rdim_str8f(RDIM_Arena *arena, char *fmt, ...)
 }
 
 RDI_PROC RDIM_String8
-rdim_str8fv(RDIM_Arena *arena, char *fmt, va_list args)
+rdim_str8fv(RDIM_Arena *arena, const char *fmt, va_list args)
 {
   va_list args2;
   va_copy(args2, args);

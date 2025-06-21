@@ -31,7 +31,7 @@
 // [x] hook up RDI symbolizer
 
 internal void
-rd_stderr(char *fmt, ...)
+rd_stderr(const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0,0);
   va_list args;

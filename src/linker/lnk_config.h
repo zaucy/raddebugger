@@ -527,7 +527,7 @@ internal B32             lnk_cmd_line_has_switch(LNK_CmdLine cmd_line, LNK_CmdSw
 ////////////////////////////////
 // Errors
 
-internal void lnk_error_cmd_switch                    (LNK_ErrorCode code, String8 obj_path, String8 lib_path, LNK_CmdSwitchType cmd_switch, char *fmt, ...);
+internal void lnk_error_cmd_switch                    (LNK_ErrorCode code, String8 obj_path, String8 lib_path, LNK_CmdSwitchType cmd_switch, const char *fmt, ...);
 internal void lnk_error_cmd_switch_invalid_param_count(LNK_ErrorCode code, String8 obj_path, String8 lib_path, LNK_CmdSwitchType cmd_switch);
 internal void lnk_error_cmd_switch_invalid_param      (LNK_ErrorCode code, String8 obj_path, String8 lib_path, LNK_CmdSwitchType cmd_switch, String8 param);
 

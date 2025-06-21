@@ -471,7 +471,7 @@ push_str8_copy(Arena *arena, String8 s){
 }
 
 internal String8
-push_str8fv(Arena *arena, char *fmt, va_list args){
+push_str8fv(Arena *arena, const char *fmt, va_list args){
   va_list args2;
   va_copy(args2, args);
   U32 needed_bytes = raddbg_vsnprintf(0, 0, fmt, args) + 1;
@@ -484,7 +484,7 @@ push_str8fv(Arena *arena, char *fmt, va_list args){
 }
 
 internal String8
-push_str8f(Arena *arena, char *fmt, ...){
+push_str8f(Arena *arena, const char *fmt, ...){
   va_list args;
   va_start(args, fmt);
   String8 result = push_str8fv(arena, fmt, args);
@@ -982,7 +982,7 @@ str8_list_push_aligner(Arena *arena, String8List *list, U64 min, U64 align){
 }
 
 internal String8Node*
-str8_list_pushf(Arena *arena, String8List *list, char *fmt, ...){
+str8_list_pushf(Arena *arena, String8List *list, const char *fmt, ...){
   va_list args;
   va_start(args, fmt);
   String8 string = push_str8fv(arena, fmt, args);
@@ -992,7 +992,7 @@ str8_list_pushf(Arena *arena, String8List *list, char *fmt, ...){
 }
 
 internal String8Node*
-str8_list_push_frontf(Arena *arena, String8List *list, char *fmt, ...){
+str8_list_push_frontf(Arena *arena, String8List *list, const char *fmt, ...){
   va_list args;
   va_start(args, fmt);
   String8 string = push_str8fv(arena, fmt, args);

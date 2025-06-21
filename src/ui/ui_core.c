@@ -68,7 +68,7 @@ ui_key_from_string(UI_Key seed_key, String8 string)
 }
 
 internal UI_Key
-ui_key_from_stringf(UI_Key seed_key, char *fmt, ...)
+ui_key_from_stringf(UI_Key seed_key, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -2667,7 +2667,7 @@ ui_build_box_from_string(UI_BoxFlags flags, String8 string)
 }
 
 internal UI_Box *
-ui_build_box_from_stringf(UI_BoxFlags flags, char *fmt, ...)
+ui_build_box_from_stringf(UI_BoxFlags flags, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -3556,7 +3556,7 @@ ui_pop_corner_radius(void)
 }
 
 internal void
-ui_push_tagf(char *fmt, ...)
+ui_push_tagf(const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;

@@ -180,7 +180,7 @@ typedef struct
 
 ////////////////////////////////
 
-internal void lnk_error_obj(LNK_ErrorCode code, LNK_Obj *obj, char *fmt, ...);
+internal void lnk_error_obj(LNK_ErrorCode code, LNK_Obj *obj, const char *fmt, ...);
 
 ////////////////////////////////
 

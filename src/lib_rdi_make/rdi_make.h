@@ -1405,8 +1405,8 @@ RDI_PROC void rdim_scratch_end_fallback(RDIM_Temp temp);
 //- rjf: strings
 RDI_PROC RDIM_String8 rdim_str8(RDI_U8 *str, RDI_U64 size);
 RDI_PROC RDIM_String8 rdim_str8_copy(RDIM_Arena *arena, RDIM_String8 src);
-RDI_PROC RDIM_String8 rdim_str8f(RDIM_Arena *arena, char *fmt, ...);
-RDI_PROC RDIM_String8 rdim_str8fv(RDIM_Arena *arena, char *fmt, va_list args);
+RDI_PROC RDIM_String8 rdim_str8f(RDIM_Arena *arena, const char *fmt, ...);
+RDI_PROC RDIM_String8 rdim_str8fv(RDIM_Arena *arena, const char *fmt, va_list args);
 RDI_PROC RDI_S32 rdim_str8_match(RDIM_String8 a, RDIM_String8 b, RDIM_StringMatchFlags flags);
 #define rdim_str8_lit(S)              rdim_str8((RDI_U8*)(S), sizeof(S) - 1)
 #define rdim_str8_struct(S)           rdim_str8((RDI_U8*)(S), sizeof(*(S)))

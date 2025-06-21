@@ -297,7 +297,7 @@ lnk_cmd_line_has_switch(LNK_CmdLine cmd_line, LNK_CmdSwitchType cmd_switch)
 ////////////////////////////////
 
 internal void
-lnk_error_cmd_switch(LNK_ErrorCode code, String8 obj_path, String8 lib_path, LNK_CmdSwitchType cmd_switch, char *fmt, ...)
+lnk_error_cmd_switch(LNK_ErrorCode code, String8 obj_path, String8 lib_path, LNK_CmdSwitchType cmd_switch, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0,0);
   va_list args; va_start(args, fmt);

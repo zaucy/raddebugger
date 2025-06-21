@@ -72,12 +72,12 @@
 #if !defined(RADDBG_MARKUP_STUBS)
 int raddbg_is_attached__impl(void);
 int raddbg_thread_id__impl(void);
-void raddbg_thread_name__impl(int id, char *fmt, ...);
+void raddbg_thread_name__impl(int id, const char *fmt, ...);
 void raddbg_thread_color__impl(int id, unsigned int hexcode);
-void raddbg_watch__impl(char *fmt, ...);
-void raddbg_log__impl(char *fmt, ...);
+void raddbg_watch__impl(const char *fmt, ...);
+void raddbg_log__impl(const char *fmt, ...);
 void raddbg_add_or_remove_breakpoint__impl(void *ptr, int set, int size, int r, int w, int x);
-void raddbg_annotate_vaddr_range__impl(void *ptr, unsigned __int64 size, char *fmt, ...);
+void raddbg_annotate_vaddr_range__impl(void *ptr, unsigned __int64 size, const char *fmt, ...);
 #endif
 
 ////////////////////////////////
@@ -246,7 +246,7 @@ raddbg_thread_id__impl(void)
 }
 
 void
-raddbg_thread_name__impl(int id, char *fmt, ...)
+raddbg_thread_name__impl(int id, const char *fmt, ...)
 {
   // rjf: resolve variadic arguments
   char buffer[512] = {0};
@@ -359,13 +359,13 @@ raddbg_thread_color__impl(int id, unsigned int hexcode)
 #define raddbg_break__impl() (__debugbreak())
 
 void
-raddbg_watch__impl(char *fmt, ...)
+raddbg_watch__impl(const char *fmt, ...)
 {
   // TODO(rjf)
 }
 
 void
-raddbg_log__impl(char *fmt, ...)
+raddbg_log__impl(const char *fmt, ...)
 {
   // rjf: resolve variadic arguments
   char buffer[4096];
@@ -418,7 +418,7 @@ raddbg_add_or_remove_breakpoint__impl(void *ptr, int set, int size, int r, int w
 }
 
 void
-raddbg_annotate_vaddr_range__impl(void *ptr, unsigned __int64 size, char *fmt, ...)
+raddbg_annotate_vaddr_range__impl(void *ptr, unsigned __int64 size, const char *fmt, ...)
 {
   if(raddbg_is_attached())
   {

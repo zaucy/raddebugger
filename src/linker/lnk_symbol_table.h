@@ -212,7 +212,7 @@ internal U64  lnk_symbol_hash(String8 string);
 internal LNK_SymbolTable * lnk_symbol_table_init(TP_Arena *arena);
 internal LNK_Symbol *      lnk_symbol_table_search_hash(LNK_SymbolTable *symtab, LNK_SymbolScopeFlags scope, U64 hash, String8 name);
 internal LNK_Symbol *      lnk_symbol_table_search(LNK_SymbolTable *symtab, LNK_SymbolScopeFlags scope, String8 name);
-internal LNK_Symbol *      lnk_symbol_table_searchf(LNK_SymbolTable *symtab, LNK_SymbolScopeFlags scope, char *fmt, ...);
+internal LNK_Symbol *      lnk_symbol_table_searchf(LNK_SymbolTable *symtab, LNK_SymbolScopeFlags scope, const char *fmt, ...);
 internal void              lnk_symbol_table_push_hash(LNK_SymbolTable *symtab, U64 hash, LNK_Symbol *symbol);
 internal void              lnk_symbol_table_push(LNK_SymbolTable *symtab, LNK_Symbol *symbol);
 internal void              lnk_symbol_table_remove(LNK_SymbolTable *symtab, LNK_SymbolScopeIndex scope, String8 name);

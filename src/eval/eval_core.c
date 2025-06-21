@@ -141,7 +141,7 @@ e_msg(Arena *arena, E_MsgList *msgs, E_MsgKind kind, Rng1U64 range, String8 text
 }
 
 internal void
-e_msgf(Arena *arena, E_MsgList *msgs, E_MsgKind kind, Rng1U64 range, char *fmt, ...)
+e_msgf(Arena *arena, E_MsgList *msgs, E_MsgKind kind, Rng1U64 range, const char *fmt, ...)
 {
   va_list args;
   va_start(args, fmt);
@@ -824,7 +824,7 @@ e_key_from_string(String8 string)
 }
 
 internal E_Key
-e_key_from_stringf(char *fmt, ...)
+e_key_from_stringf(const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;
@@ -1335,7 +1335,7 @@ e_key_wrap(E_Key key, String8 string)
 }
 
 internal E_Key
-e_key_wrapf(E_Key key, char *fmt, ...)
+e_key_wrapf(E_Key key, const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;

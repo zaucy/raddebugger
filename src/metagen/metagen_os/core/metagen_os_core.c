@@ -226,7 +226,7 @@ os_cmd_line_launch(String8 string)
 }
 
 internal OS_Handle
-os_cmd_line_launchf(char *fmt, ...)
+os_cmd_line_launchf(const char *fmt, ...)
 {
   Temp scratch = scratch_begin(0, 0);
   va_list args;

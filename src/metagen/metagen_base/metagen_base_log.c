@@ -47,7 +47,7 @@ log_msg(LogMsgKind kind, String8 string)
 }
 
 internal void
-log_msgf(LogMsgKind kind, char *fmt, ...)
+log_msgf(LogMsgKind kind, const char *fmt, ...)
 {
   if(log_active != 0)
   {
